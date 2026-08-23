@@ -277,22 +277,22 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "dvc", specifier = ">=3.62.0" },
-    { name = "fastapi", specifier = ">=0.139.0" },
-    { name = "httpx", specifier = ">=0.28.1" },
-    { name = "kaggle", specifier = ">=2.2.4" },
-    { name = "matplotlib", specifier = ">=3.11.0" },
-    { name = "mlflow", specifier = ">=3.14.0" },
-    { name = "pillow", specifier = ">=11.3.0" },
-    { name = "prometheus-fastapi-instrumentator", specifier = ">=8.0.2" },
-    { name = "protobuf", specifier = "<4" },
-    { name = "pytest", specifier = ">=9.1.1" },
-    { name = "python-dotenv", specifier = ">=1.2.2" },
-    { name = "python-multipart", specifier = ">=0.0.20" },
-    { name = "ruff", specifier = ">=0.15.20" },
-    { name = "torch", specifier = ">=2.7.1" },
-    { name = "torchvision", specifier = ">=0.22.1" },
-    { name = "uvicorn", specifier = ">=0.50.0" },
+    { name = "dvc", specifier = "==3.67.1" },
+    { name = "fastapi", specifier = "==0.141.1" },
+    { name = "httpx", specifier = "==0.28.1" },
+    { name = "kaggle", specifier = "==2.2.4" },
+    { name = "matplotlib", specifier = "==3.11.1" },
+    { name = "mlflow", specifier = "==3.15.1" },
+    { name = "pillow", specifier = "==12.3.0" },
+    { name = "prometheus-fastapi-instrumentator", specifier = "==8.1.0" },
+    { name = "protobuf", specifier = "==3.20.3" },
+    { name = "pytest", specifier = "==9.1.1" },
+    { name = "python-dotenv", specifier = "==1.2.2" },
+    { name = "python-multipart", specifier = "==0.0.32" },
+    { name = "ruff", specifier = "==0.16.3" },
+    { name = "torch", specifier = "==2.13.0" },
+    { name = "torchvision", specifier = "==0.28.0" },
+    { name = "uvicorn", specifier = "==0.52.3" },
 ]
 
 [[package]]
