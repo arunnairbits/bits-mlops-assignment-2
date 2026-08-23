@@ -60,4 +60,4 @@ async def predict(file: Annotated[UploadFile, File()]) -> dict[str, str | int | 
     except ValueError as error:
         raise HTTPException(status_code=400, detail=str(error)) from error
     logger.info("Prediction generated: %s (confidence: %.4f)", result["label"], result["confidence"])
-    return result
+    return {**result, "class": result["label"]}

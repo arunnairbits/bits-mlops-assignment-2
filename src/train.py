@@ -11,11 +11,14 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import mlflow
 import torch
+from PIL import ImageFile
 from torch import nn
 from torch.optim import Adam
 from torch.utils.data import DataLoader
 
 from src.preprocess import DEFAULT_DATA_DIR, build_dataloaders
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 ARTIFACT_DIR = Path("artifacts")
 MODEL_PATH = Path(os.getenv("MODEL_PATH", "artifacts/cats_vs_dogs_cnn.pt"))
@@ -108,6 +111,9 @@ def train_model(
             train_loss, train_accuracy = run_epoch(model, train_loader, criterion, optimizer)
             validation_loss, validation_accuracy = run_epoch(model, validation_loader, criterion)
             mlflow.log_metrics({"train_loss": train_loss, "train_accuracy": train_accuracy, "validation_loss": validation_loss, "validation_accuracy": validation_accuracy}, step=epoch)
+
+            print(f"Epoch {epoch}/{epochs} | Train Loss: {train_loss:.4f}, Train Acc: {train_accuracy:.4f} | Val Loss: {validation_loss:.4f}, Val Acc: {validation_accuracy:.4f}")
+            
         test_loss, test_accuracy = run_epoch(model, test_loader, criterion)
         labels, predictions = collect_predictions(model, test_loader)
         matrix = build_confusion_matrix(labels, predictions, len(classes))

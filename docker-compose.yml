@@ -1,0 +1,38 @@
+services:
+  api:
+    build: .
+    image: ${API_IMAGE:-cats-dogs-api:local}
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    networks:
+      - mlops-net
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9095:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - mlops-net
+
+  # --- New MLflow Service ---
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.14.1
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount your local mlruns directory to the container
+      - ./mlruns:/mlflow/mlruns
+    command: mlflow server --backend-store-uri /mlflow/mlruns --host 0.0.0.0 --port 5000
+    networks:
+      - mlops-net
+
+networks:
+  mlops-net:
+    driver: bridge
