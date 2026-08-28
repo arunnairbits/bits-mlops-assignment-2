@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: heart-disease-api
+        app: cats-dogs-api
     spec:
       containers:
       - name: api

@@ -2,7 +2,7 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: 'heart-disease-api'
+  - job_name: 'cats-dogs-api'
     static_configs:
       # In Docker Compose, services can talk to each other using their service name ("api")
       - targets: ['api:8000']
