@@ -14,30 +14,9 @@ spec:
       labels:
         app: mlflow
     spec:
-      # containers:
-      # - name: mlflow
-      #   image: ghcr.io/mlflow/mlflow:latest
-      #   command: 
-      #   - "mlflow"
-      #   - "server"
-      #   - "--backend-store-uri"
-      #   - "sqlite:////mlflow/mlruns/mlflow.db"
-      #   - "--default-artifact-root"
-      #   - "/mlflow/mlruns"
-      #   - "--host"
-      #   - "0.0.0.0"
-      #   - "--port"
-      #   - "5000"
-      #   ports:
-      #   - containerPort: 5000
-      #   volumeMounts:
-      #   - name: mlflow-data
-      #     mountPath: /mlflow/mlruns
       containers:
       - name: mlflow
-        # image: ghcr.io/mlflow/mlflow:v2.14.1
         image: ghcr.io/mlflow/mlflow:latest
-        # command: ["mlflow", "server", "--backend-store-uri", "/mlflow/mlruns", "--host", "0.0.0.0", "--port", "5000"]
         command: ["mlflow", "server", "--backend-store-uri", "sqlite:////mlflow/mlruns/mlflow.db", "--host", "0.0.0.0", "--port", "5000", "--serve-artifacts"]
         ports:
         - containerPort: 5000
@@ -47,9 +26,8 @@ spec:
       volumes:
       - name: mlflow-data
         hostPath:
-          # CHANGE THIS PATH to the absolute path of the mlruns folder on your laptop
-          path: /Users/arunnair/Documents/bits-mlops-assignment-1/mlruns
-          # type: Directory
+          path: /Users/arunnair/Documents/bits-mlops-assignment-2/mlruns
+          type: DirectoryOrCreate
 ---
 apiVersion: v1
 kind: Service
