@@ -3,7 +3,7 @@ services:
     build: .
     image: ${API_IMAGE:-cats-dogs-api:local}
     ports:
-      - "8000:8000"
+      - "8001:8000"
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 5s
@@ -23,13 +23,14 @@ services:
 
   # --- New MLflow Service ---
   mlflow:
-    image: ghcr.io/mlflow/mlflow:v2.14.1
+    # image: ghcr.io/mlflow/mlflow:v2.14.1
+    image: ghcr.io/mlflow/mlflow:latest
     ports:
       - "5000:5000"
     volumes:
       # Mount your local mlruns directory to the container
       - ./mlruns:/mlflow/mlruns
-    command: mlflow server --backend-store-uri /mlflow/mlruns --host 0.0.0.0 --port 5000
+    command: mlflow server --backend-store-uri sqlite:////mlflow/mlruns/mlflow.db --serve-artifacts --host 0.0.0.0 --port 5000
     networks:
       - mlops-net
 
