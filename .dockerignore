@@ -1,0 +1,10 @@
+data/
+.venv/
+.git/
+.dvc/
+mlruns/
+mlruns.db
+mlflow.db
+__pycache__/
+.pytest_cache/
+*.zip

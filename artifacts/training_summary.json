@@ -1,0 +1,9 @@
+{
+  "model_path": "artifacts/cats_vs_dogs_cnn.pt",
+  "classes": [
+    "Cat",
+    "Dog"
+  ],
+  "test_loss": 0.6119519171358251,
+  "test_accuracy": 0.6621351459416234
+}
